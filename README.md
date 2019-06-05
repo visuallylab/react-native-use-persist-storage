@@ -1,10 +1,12 @@
-# React Native Hooks usePersistStorage
-Persist and rehydrate a context store by React Hooks
+# React Native Hooks - usePersistStorage
+Persist and rehydrate a **context store** by React Hooks
 
-#### including
 - an asynchronous persist storage
-- option sensitive both on iOS & Android
+- can store sensitive info both on iOS & Android
 - migration function
+
+[![npm version](https://badge.fury.io/js/react-native-use-persist-storage.svg)](https://badge.fury.io/js/react-native-use-persist-storage)
+
 
 ## Usage
 Install react-native-use-persist-storage
@@ -13,8 +15,7 @@ $ yarn add react-native-use-persist-storage
 ```
 
 Install **@react-native-community/async-storage**, **react-native-sensitive-info**
-
-see [peerDependencies](https://github.com/visuallylab/react-native-use-persist-storage#peer-dependencies)
+(see [peerDependencies](https://github.com/visuallylab/react-native-use-persist-storage#peer-dependencies))
 
 ```
 $ yarn add react-native-sensitive-info @react-native-community/async-storage
