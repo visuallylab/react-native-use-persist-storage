@@ -1,0 +1,6 @@
+{
+  "extends": ["@visuallylab/tslint-config-frontend"],
+  "rules": {
+    "no-console": [true, "log"]
+  }
+}
