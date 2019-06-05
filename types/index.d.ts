@@ -1,7 +1,7 @@
 import React from 'react';
 import { RNSensitiveInfoOptions } from 'react-native-sensitive-info';
 import { TMigrationFuncParams } from './createMigrate';
-export * from './createMigrate';
+export { default as createMigrate } from './createMigrate';
 export declare type TPersistStorageValue<Value> = {
     _currentVersion: number;
     value: Value;

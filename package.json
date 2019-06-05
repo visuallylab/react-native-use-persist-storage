@@ -1,6 +1,6 @@
 {
   "name": "react-native-use-persist-storage",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "description": "Persist and rehydrate a context store by React Hooks",

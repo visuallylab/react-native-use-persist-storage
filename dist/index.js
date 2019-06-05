@@ -7,9 +7,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,7 +14,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const createAsyncStorage_1 = __importDefault(require("./createAsyncStorage"));
 const createSensitiveStorage_1 = __importDefault(require("./createSensitiveStorage"));
-__export(require("./createMigrate"));
+var createMigrate_1 = require("./createMigrate");
+exports.createMigrate = createMigrate_1.default;
 const defaultOptions = {
     version: 0,
     persist: true,
