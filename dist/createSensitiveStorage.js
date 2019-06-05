@@ -18,12 +18,12 @@ const extractKeys = react_native_1.Platform.select({
     android: Object.keys,
 });
 const noop = () => null;
-const createSensitiveStorage = (options = {}) => {
+const createSensitiveStorage = (sensitiveOpts = {}) => {
     return {
         getItem(key, callback = noop) {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
-                    let result = yield react_native_sensitive_info_1.default.getItem(key, options);
+                    let result = yield react_native_sensitive_info_1.default.getItem(key, sensitiveOpts);
                     if (typeof result === 'undefined') {
                         result = null;
                     }
@@ -39,7 +39,7 @@ const createSensitiveStorage = (options = {}) => {
         setItem(key, value, callback = noop) {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
-                    yield react_native_sensitive_info_1.default.setItem(key, value, options);
+                    yield react_native_sensitive_info_1.default.setItem(key, value, sensitiveOpts);
                     callback(null, value);
                 }
                 catch (error) {
@@ -51,7 +51,7 @@ const createSensitiveStorage = (options = {}) => {
         removeItem(key, callback = noop) {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
-                    yield react_native_sensitive_info_1.default.deleteItem(key, options);
+                    yield react_native_sensitive_info_1.default.deleteItem(key, sensitiveOpts);
                     callback(null, null);
                 }
                 catch (error) {
@@ -63,7 +63,7 @@ const createSensitiveStorage = (options = {}) => {
         getAllKeys(callback = noop) {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
-                    const values = (yield react_native_sensitive_info_1.default.getAllItems(options));
+                    const values = (yield react_native_sensitive_info_1.default.getAllItems(sensitiveOpts));
                     const result = extractKeys(values);
                     callback(null, result);
                     return result;
