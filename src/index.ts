@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { RNSensitiveInfoOptions } from 'react-native-sensitive-info';
 
 import { TMigrationFuncParams } from './createMigrate';
@@ -14,13 +14,17 @@ export type TPersistStorageValue<Value> = {
 };
 
 export type TUsePersistStorageOptions<Value = any> = {
+  debug: boolean;
   version: number;
   persist?: boolean;
-  migrate?: ((params: TMigrationFuncParams) => TPersistStorageValue<Value>) | null;
+  migrate?:
+    | ((params: TMigrationFuncParams) => TPersistStorageValue<Value>)
+    | null;
   sensitive?: false | RNSensitiveInfoOptions;
 };
 
 const defaultOptions: TUsePersistStorageOptions = {
+  debug: true,
   version: 0,
   persist: true,
   migrate: null,
@@ -40,11 +44,12 @@ const usePersistStorage = <Value>(
   key: string,
   initialValue: Value | (() => Value),
   {
+    debug = defaultOptions.debug,
     version = defaultOptions.version,
     persist = defaultOptions.persist,
     migrate = defaultOptions.migrate,
     sensitive = defaultOptions.sensitive,
-  }: TUsePersistStorageOptions<Value> = defaultOptions,
+  }: TUsePersistStorageOptions<Value> = defaultOptions
 ): [Value, React.Dispatch<React.SetStateAction<Value>>, boolean] => {
   const isMounted = useRef<boolean>(false);
   const currentVersion = useRef<number>(version);
@@ -53,17 +58,17 @@ const usePersistStorage = <Value>(
 
   const Storage = useMemo(
     () =>
-      sensitive
-        ? createSensitiveStorage(sensitive)
-        : createAsyncStorage(),
-    ['unchange'],
+      sensitive ? createSensitiveStorage(sensitive) : createAsyncStorage(),
+    ['unchange']
   );
 
   const logPrefix = sensitive ? '(sensitive)' : '';
 
   useEffect(() => {
     if (persist) {
-      const setStateToStorage = async (forceValue?: TPersistStorageValue<Value>) => {
+      const setStateToStorage = async (
+        forceValue?: TPersistStorageValue<Value>
+      ) => {
         const value = forceValue || {
           _currentVersion: currentVersion.current,
           value: state,
@@ -71,7 +76,9 @@ const usePersistStorage = <Value>(
         try {
           const serializedValue = JSON.stringify(value);
           await Storage.setItem(key, serializedValue);
-          console.debug(`${logPrefix}[PersistStorage]: set ${key}: `, value);
+          if (debug) {
+            console.debug(`${logPrefix}[PersistStorage]: set ${key}: `, value);
+          }
         } catch (err) {
           console.error(err);
         }
@@ -100,10 +107,12 @@ const usePersistStorage = <Value>(
               currentVersion.current = parsedValue._currentVersion;
             }
             setState(parsedValue.value);
-            console.debug(
-              `${logPrefix}[PersistStorage]: restore ${key}: `,
-              parsedValue,
-            );
+            if (debug) {
+              console.debug(
+                `${logPrefix}[PersistStorage]: restore ${key}: `,
+                parsedValue
+              );
+            }
           } else {
             // If storage has no value, set initial value to storage
             setStateToStorage();
@@ -127,7 +136,9 @@ const usePersistStorage = <Value>(
       // remove storageValue when mounted.
       Storage.removeItem(key);
       setRestored(true);
-      console.debug(`${logPrefix}[PersistStorage]: remove ${key}`);
+      if (debug) {
+        console.debug(`${logPrefix}[PersistStorage]: remove ${key}`);
+      }
     }
   }, [state]);
 
