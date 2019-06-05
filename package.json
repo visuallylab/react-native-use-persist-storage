@@ -1,6 +1,6 @@
 {
   "name": "react-native-use-persist-storage",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "description": "Persist and rehydrate a context store by React Hooks",
@@ -27,13 +27,17 @@
     "url": "https://github.com/visuallylab/react-native-usePersistStorage/issues"
   },
   "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.1",
+    "react-native": ">=0.59.0"
+  },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.4.2",
-    "react": "^16.8.6",
-    "react-native": "^0.59.8",
-    "react-native-sensitive-info": "^5.4.1"
+    "react-native-sensitive-info": "^5.4.1",
+    "@react-native-community/async-storage": "^1.4.2"
   },
   "devDependencies": {
+    "react": "^16.8.3",
+    "react-native": "^0.59.8",
     "@types/react": "^16.8.19",
     "@types/react-native": "^0.57.60",
     "@visuallylab/tslint-config-frontend": "^1.0.12",
