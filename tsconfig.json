@@ -10,10 +10,10 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "target": "es6",
+    "target": "es5",
     "lib": ["es6", "es2017"],
     "declaration": true
   },

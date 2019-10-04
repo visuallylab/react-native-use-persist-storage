@@ -7,7 +7,7 @@ export declare type TPersistStorageValue<Value> = {
 };
 export declare type TUsePersistStorageOptions<Value = any> = {
     debug?: boolean;
-    version: number;
+    version?: number;
     persist?: boolean;
     migrate?: ((params: TMigrationFuncParams) => TPersistStorageValue<Value>) | null;
     sensitive?: false | RNSensitiveInfoOptions;
