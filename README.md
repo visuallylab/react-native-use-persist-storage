@@ -110,7 +110,7 @@ const App = () => {
 };
 ```
 
-##### Recommend easy use: [createPersistContext](#createPersistContext)
+#### Recommend use: [createPersistContext](#createPersistContext)
 
 ## API
 
