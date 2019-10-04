@@ -13,7 +13,7 @@ export type TPersistStorageValue<Value> = {
 
 export type TUsePersistStorageOptions<Value = any> = {
   debug?: boolean;
-  version: number;
+  version?: number;
   persist?: boolean;
   migrate?:
     | ((params: TMigrationFuncParams) => TPersistStorageValue<Value>)
@@ -40,7 +40,7 @@ const usePersistStorage = <Value>(
   }: TUsePersistStorageOptions<Value> = defaultOptions
 ): [Value, React.Dispatch<React.SetStateAction<Value>>, boolean] => {
   const isMounted = useRef<boolean>(false);
-  const currentVersion = useRef<number>(version);
+  const currentVersion = useRef<number>(version || 0);
   const [state, setState] = useState<Value>(initialValue);
   const [restored, setRestored] = useState<boolean>(false);
 
