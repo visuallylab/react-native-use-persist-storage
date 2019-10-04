@@ -123,11 +123,16 @@ const App = () => {
 
 ##### `options` ([see](https://github.com/visuallylab/react-native-use-persist-storage/blob/master/src/defaultOptions.ts#L4))
 
-- `debug`: (default: `false`): call `console.debug` when any persist storage action.
-- `persist`: (default: `true`): set false, it will same as useState
-- `version`: (default: `0`): storage version, set with migrate function
-- `migrate`: (default: `null`): set migrate function, [see](#createMigrate)
-- sensitive: (default: `false`): if set true, it will use [react-native-sensitive-info](https://github.com/mCodex/react-native-sensitive-info) to store your data.
+- `debug`: call `console.debug` when any persist storage action.
+  - default: `false`
+- `persist`: set false, it will same as useState
+  - default: `true`
+- `version`: storage version, set with migrate function
+  - default: `0`
+- `migrate`: set migrate function, [see](#createMigrate)
+  - default: `null`
+- `sensitive`: if set true, it will use [react-native-sensitive-info](https://github.com/mCodex/react-native-sensitive-info) to store your data.
+  - default: `false`
 
 #### `createPersistContext`
 
@@ -144,6 +149,7 @@ export default createPersistContext({
   },
   options: { ... }
 });
+
 
 // Component.js
 import User from './contexts/user';
