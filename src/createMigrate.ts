@@ -1,3 +1,4 @@
+import { defaultOptions } from './defaultOptions';
 import { TPersistStorageValue } from './index';
 
 export type TMigrations = {
@@ -16,7 +17,7 @@ export type TCreateMigrateConfig = {
 
 const createMigrate = <AfterValue>(
   migrations: TMigrations,
-  configs: TCreateMigrateConfig = { debug: false },
+  configs: TCreateMigrateConfig = { debug: defaultOptions.debug },
 ) => {
   return ({
     key,

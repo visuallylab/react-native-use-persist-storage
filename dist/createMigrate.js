@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var defaultOptions_1 = require("./defaultOptions");
 var createMigrate = function (migrations, configs) {
-    if (configs === void 0) { configs = { debug: false }; }
+    if (configs === void 0) { configs = { debug: defaultOptions_1.defaultOptions.debug }; }
     return function (_a) {
         var key = _a.key, state = _a.state, version = _a.version;
         var debug = configs.debug;
