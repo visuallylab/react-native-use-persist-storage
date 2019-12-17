@@ -32,16 +32,16 @@
     "react-native": ">=0.59.0"
   },
   "dependencies": {
-    "react-native-sensitive-info": "^5.5.1",
-    "@react-native-community/async-storage": "^1.6.2"
+    "react-native-sensitive-info": "^5.5.4",
+    "@react-native-community/async-storage": "^1.7.1"
   },
   "devDependencies": {
-    "react": "^16.8.3",
-    "react-native": "^0.59.8",
-    "@types/react": "^16.8.19",
-    "@types/react-native": "^0.57.60",
+    "react": "^16.12.0",
+    "react-native": "^0.61.5",
+    "@types/react": "^16.9.16",
+    "@types/react-native": "^0.60.25",
     "@visuallylab/tslint-config-frontend": "^1.0.13",
-    "tslint": "^5.20.0",
-    "typescript": "^3.6.3"
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3"
   }
 }
