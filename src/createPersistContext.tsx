@@ -1,9 +1,9 @@
 import React from "react";
 import usePersistStorage, {
-  TUsePersistStorageOptions
+  UsePersistStorageOptions
 } from "./usePersistStorage";
 
-export type TPersistContext<T> = [
+export type PersistContext<T> = [
   T,
   React.Dispatch<React.SetStateAction<T>>,
   boolean
@@ -16,11 +16,11 @@ const createPersistContext = <T extends {}>({
 }: {
   storageKey: string;
   defaultData: T;
-  options?: TUsePersistStorageOptions<T>;
+  options?: UsePersistStorageOptions<T>;
 }) => {
   const createDefaultData = () => defaultData;
 
-  const Context = React.createContext<TPersistContext<T>>([
+  const Context = React.createContext<PersistContext<T>>([
     createDefaultData(), // state
     () => null, // update state function
     false // restored
@@ -34,7 +34,7 @@ const createPersistContext = <T extends {}>({
       createDefaultData,
       {
         persist: props.persist,
-        ...options,
+        ...options
       }
     );
 

@@ -1,7 +1,7 @@
 
-import { TUsePersistStorageOptions } from './index';
+import { UsePersistStorageOptions } from './usePersistStorage';
 
-export let defaultOptions: TUsePersistStorageOptions = {
+export let defaultOptions: UsePersistStorageOptions = {
   debug: false,
   version: 0,
   persist: true,
@@ -11,12 +11,12 @@ export let defaultOptions: TUsePersistStorageOptions = {
   sensitive: false,
 };
 
-export type TSetPersistStorageDefaultsParams = {
+export type SetPersistStorageDefaultsParams = {
   debug?: boolean;
   persist?: boolean;
   version?: number;
 }
 
-export const setPersistStorageDefaults = (configs: TSetPersistStorageDefaultsParams) => {
+export const setPersistStorageDefaults = (configs: SetPersistStorageDefaultsParams) => {
   defaultOptions = { ...defaultOptions, ...configs };
 }
