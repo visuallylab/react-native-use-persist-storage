@@ -1,6 +1,7 @@
 {
   "extends": ["@visuallylab/tslint-config-frontend"],
   "rules": {
-    "no-console": [true, "log"]
+    "no-console": [true, "log"],
+    "interface-name": false
   }
 }
