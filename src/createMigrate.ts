@@ -1,5 +1,6 @@
-import { defaultOptions } from './defaultOptions';
-import { TPersistStorageValue } from './index';
+import { defaultOptions } from "./defaultOptions";
+import { PersistStorageValue } from "./usePersistStorage";
+import { transformStorageValue } from "./utils";
 
 export type TMigrations = {
   [version: number]: (state: any) => any;
@@ -7,7 +8,7 @@ export type TMigrations = {
 
 export type TMigrationFuncParams = {
   key: string;
-  state: TPersistStorageValue<any>;
+  state: PersistStorageValue<any>;
   version: number;
 };
 
@@ -17,13 +18,13 @@ export type TCreateMigrateConfig = {
 
 const createMigrate = <AfterValue>(
   migrations: TMigrations,
-  configs: TCreateMigrateConfig = { debug: defaultOptions.debug },
+  configs: TCreateMigrateConfig = { debug: defaultOptions.debug }
 ) => {
   return ({
     key,
     state,
-    version,
-  }: TMigrationFuncParams): TPersistStorageValue<AfterValue> => {
+    version
+  }: TMigrationFuncParams): PersistStorageValue<AfterValue> => {
     const { debug } = configs;
     if (!state.value) {
       if (debug) {
@@ -54,10 +55,7 @@ const createMigrate = <AfterValue>(
       if (debug) {
         console.warn(`[${key}]: running migration ${versionKey}`);
       }
-      return {
-        _currentVersion: versionKey,
-        value: migrations[versionKey](value),
-      };
+      return transformStorageValue(migrations[versionKey](value), versionKey);
     }, state);
 
     return migrated;
