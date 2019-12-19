@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var defaultOptions_1 = require("./defaultOptions");
+var utils_1 = require("./utils");
 var createMigrate = function (migrations, configs) {
     if (configs === void 0) { configs = { debug: defaultOptions_1.defaultOptions.debug }; }
     return function (_a) {
@@ -34,10 +35,7 @@ var createMigrate = function (migrations, configs) {
             if (debug) {
                 console.warn("[" + key + "]: running migration " + versionKey);
             }
-            return {
-                _currentVersion: versionKey,
-                value: migrations[versionKey](value),
-            };
+            return utils_1.transformStorageValue(migrations[versionKey](value), versionKey);
         }, state);
         return migrated;
     };

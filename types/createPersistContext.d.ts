@@ -1,15 +1,15 @@
 import React from "react";
-import { TUsePersistStorageOptions } from "./usePersistStorage";
-export declare type TPersistContext<T> = [T, React.Dispatch<React.SetStateAction<T>>, boolean];
+import { UsePersistStorageOptions } from "./usePersistStorage";
+export declare type PersistContext<T> = [T, React.Dispatch<React.SetStateAction<T>>, boolean];
 declare const createPersistContext: <T extends {}>({ storageKey, defaultData, options }: {
     storageKey: string;
     defaultData: T;
-    options?: TUsePersistStorageOptions<T> | undefined;
+    options?: UsePersistStorageOptions<T> | undefined;
 }) => {
-    Provider: React.FunctionComponent<{
+    Provider: React.FC<{
         persist?: boolean | undefined;
     }>;
-    Context: React.Context<[T, React.Dispatch<React.SetStateAction<T>>, boolean]>;
-    useData: () => [T, React.Dispatch<React.SetStateAction<T>>, boolean];
+    Context: React.Context<PersistContext<T>>;
+    useData: () => PersistContext<T>;
 };
 export default createPersistContext;

@@ -85,7 +85,7 @@ const UserContext = createContext(...);
 const UserProvider = props => {
   const [user, setUser, restored] = usePersistStorage('@User', createDefaultUser);
 
-  // create anything you need...
+  // anything you need...
 
   return (
     <UserContext.Provider value={
@@ -100,12 +100,21 @@ const UserProvider = props => {
 ```
 
 ```js
+// GlobalStateProvider.ts
+const GlobalStateProvider = ({ children }) => (
+  <OtherContextProvider>
+    <UserProvider>
+      {children}
+    </UserProvider>
+  </OtherContextProvider>
+)
+
 // App.js
 const App = () => {
   return (
-    <UserProvider>
-      <RootComponent />
-    </UserProvider>
+    <GlobalStateProvider>
+      <Root />
+    </GlobalStateProvider>
   );
 };
 ```
@@ -129,14 +138,14 @@ const App = () => {
   - default: `true`
 - `version`: storage version, set with migrate function
   - default: `0`
-- `migrate`: set migrate function, [see](#createMigrate)
+- `migrate`: set migrate function, [see how to use createMigrate](#createMigrate)
   - default: `null`
 - `sensitive`: if set true, it will use [react-native-sensitive-info](https://github.com/mCodex/react-native-sensitive-info) to store your data.
   - default: `false`
 
 #### `createPersistContext`
 
-It is a simple utils for easy use. [See](https://github.com/visuallylab/react-native-use-persist-storage/blob/master/src/createPersistContext.tsx)
+It is a simple built-in util function for easy use. [See](https://github.com/visuallylab/react-native-use-persist-storage/blob/master/src/createPersistContext.tsx)
 
 ```js
 // contexts/user.js
