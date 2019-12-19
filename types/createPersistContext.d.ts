@@ -1,6 +1,6 @@
 import React from "react";
-import { UsePersistStorageOptions } from "./usePersistStorage";
-export declare type PersistContext<T> = [T, React.Dispatch<React.SetStateAction<T>>, boolean];
+import { UsePersistStorageOptions, AsyncSetState } from "./usePersistStorage";
+export declare type PersistContext<T> = [T, AsyncSetState<T>, boolean];
 declare const createPersistContext: <T extends {}>({ storageKey, defaultData, options }: {
     storageKey: string;
     defaultData: T;

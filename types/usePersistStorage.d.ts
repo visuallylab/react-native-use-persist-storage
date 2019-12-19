@@ -13,5 +13,5 @@ export declare type UsePersistStorageOptions<Value = any> = {
 };
 declare type CallbackFn<S> = (prev: S) => S;
 export declare type AsyncSetState<S = any> = (stateOrCallbackFn: S | CallbackFn<S>) => Promise<void>;
-declare const usePersistStorage: <Value>(key: string, initialValue: Value | (() => Value), { debug, version, persist, migrate, sensitive }?: UsePersistStorageOptions<Value>) => [Value, AsyncSetState<any>, boolean];
+declare const usePersistStorage: <Value>(key: string, initialValue: Value | (() => Value), { debug, version, persist, migrate, sensitive }?: UsePersistStorageOptions<Value>) => [Value, AsyncSetState<Value>, boolean];
 export default usePersistStorage;
