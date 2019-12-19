@@ -1,11 +1,12 @@
 import React from "react";
 import usePersistStorage, {
-  UsePersistStorageOptions
+  UsePersistStorageOptions,
+  AsyncSetState
 } from "./usePersistStorage";
 
 export type PersistContext<T> = [
   T,
-  React.Dispatch<React.SetStateAction<T>>,
+  AsyncSetState<T>,
   boolean
 ];
 
@@ -22,7 +23,7 @@ const createPersistContext = <T extends {}>({
 
   const Context = React.createContext<PersistContext<T>>([
     createDefaultData(), // state
-    () => null, // update state function
+    async () => {;}, // update state function
     false // restored
   ]);
 
