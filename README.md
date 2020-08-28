@@ -223,3 +223,16 @@ const [user, setUser, restored] = usePersistStorage(
 )
 
 ```
+
+#### `setPersistStorageDefaults`
+You can control all default options when app initialized.([see](https://github.com/visuallylab/react-native-use-persist-storage/blob/master/src/defaultOptions.ts#L4))
+
+- open debug log:
+```js
+setPersistStorageDefaults({ debug: true });
+```
+
+- remove all stored values in persistent storage:
+```js
+setPersistStorageDefaults({ persist: false });
+```
