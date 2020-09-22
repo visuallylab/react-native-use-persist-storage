@@ -140,7 +140,7 @@ const App = () => {
   - default: `0`
 - `migrate`: set migrate function, [see how to use createMigrate](#createMigrate)
   - default: `null`
-- `sensitive`: if set true, it will use [react-native-sensitive-info](https://github.com/mCodex/react-native-sensitive-info) to store your data.
+- `sensitive`: pass [config options](https://mcodex.dev/react-native-sensitive-info/docs/5.x/ios_options), it will use [react-native-sensitive-info](https://github.com/mCodex/react-native-sensitive-info) to store your data.
   - default: `false`
 
 #### `createPersistContext`
