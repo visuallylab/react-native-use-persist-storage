@@ -1,4 +1,5 @@
-import asyncStorage from '@react-native-community/async-storage';
+// import asyncStorage from '@react-native-community/async-storage';
+import asyncStorage from '@react-native-async-storage/async-storage';
 
 type TValue = string | null;
 
