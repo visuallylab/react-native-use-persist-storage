@@ -33,7 +33,7 @@
     "react-native": ">=0.59.0"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.7.1",
+    "@react-native-async-storage/async-storage": "^1.14.1",
     "react-native-sensitive-info": "^5.5.4"
   },
   "devDependencies": {
@@ -55,7 +55,9 @@
     "typescript": "^3.7.3"
   },
   "jest": {
-    "setupFiles": ["./tests/setup.ts"],
+    "setupFiles": [
+      "./tests/setup.ts"
+    ],
     "transformIgnorePatterns": [
       "node_modules/(?!(@react-native-community|react-native)/)"
     ]

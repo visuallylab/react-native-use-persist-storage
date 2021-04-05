@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
+var async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 var noop = function () { return null; };
 var createAsyncStorage = function () {
     return {
