@@ -16,18 +16,18 @@ Install react-native-use-persist-storage
 $ yarn add react-native-use-persist-storage
 ```
 
-Install **@react-native-community/async-storage**, **react-native-sensitive-info**
+Install **@react-native-async-storage/async-storage**, **react-native-sensitive-info**
 (see [peerDependencies](https://github.com/visuallylab/react-native-use-persist-storage#peer-dependencies))
 
 ```
-$ yarn add react-native-sensitive-info @react-native-community/async-storage
+$ yarn add react-native-sensitive-info @react-native-async-storage/async-storage
 ```
 
 If RN < 0.60, link dependencies
 
 ```
 $ react-native link react-native-sensitive-info
-$ react-native link @react-native-community/async-storage
+$ react-native link @react-native-async-storage/async-storage
 ```
 
 Note: For IOS project using pods, run: \$ cd ios/ && pod install
@@ -39,7 +39,7 @@ Note: For IOS project using pods, run: \$ cd ios/ && pod install
 - react >= 16.8.1
 - react-native >= 0.59.0
 - [react-native-sensitive-info](https://github.com/mCodex/react-native-sensitive-info)
-- [@react-native-community/async-storage](https://github.com/react-native-community/react-native-async-storage)
+- [@react-native-async-storage/async-storage](https://github.com/react-native-async-storage/async-storage)
 
 ---
 

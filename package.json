@@ -33,7 +33,7 @@
     "react-native": ">=0.59.0"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.14.1",
+    "@react-native-async-storage/async-storage": "^1.15.1",
     "react-native-sensitive-info": "^5.5.4"
   },
   "devDependencies": {
