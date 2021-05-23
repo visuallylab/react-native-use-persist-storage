@@ -50,7 +50,6 @@ test("init, setState, version = 10", async () => {
   });
   expect(result.current[0]).toBe("async change callback");
   expect(await store.getItem(KEY)).toBe(toStorageValue("async change callback", 10));
-  
 });
 
 test("restore state", async () => {
@@ -77,4 +76,64 @@ test("no persist state", async () => {
 
   expect(result.current[0]).toBe("change");
   expect(await store.getItem(KEY)).toBeNull();
+});
+
+test("init, set state, reset state (when initialValue is a Value)", async () => {
+  const initialValue = "my initial value"
+  const { result } = renderHook(() =>
+    usePersistStorage(KEY, initialValue, { version: 10 })
+  );
+
+  expect(result.current[0]).toBe(initialValue);
+  expect(typeof result.current[1]).toBe("function");
+  expect(result.current[2]).toBe(false);
+
+  await sleep(100); // wait mount && init asyncStorage;
+  expect(await store.getItem(KEY)).toBe(toStorageValue(initialValue, 10));
+  expect(result.current[2]).toBe(true);
+
+  act(async () => {
+    await result.current[1]("change");
+  });
+  expect(result.current[0]).toBe("change");
+
+  await sleep(100); // wait update asyncStorage;
+  expect(await store.getItem(KEY)).toBe(toStorageValue("change", 10));
+
+  act(async () => { // reset state
+    await result.current[3]();
+  });
+  expect(result.current[0]).toBe(initialValue);
+  await sleep(100); // wait update asyncStorage;
+  expect(await store.getItem(KEY)).toBe(toStorageValue(initialValue, 10));
+});
+
+test("init, set state, reset state (when initialValue is a function)", async () => {
+  const initialValue = () => "my initial value"
+  const { result } = renderHook(() =>
+    usePersistStorage(KEY, initialValue, { version: 10 })
+  );
+
+  expect(result.current[0]).toBe(initialValue());
+  expect(typeof result.current[1]).toBe("function");
+  expect(result.current[2]).toBe(false);
+
+  await sleep(100); // wait mount && init asyncStorage;
+  expect(await store.getItem(KEY)).toBe(toStorageValue(initialValue(), 10));
+  expect(result.current[2]).toBe(true);
+
+  act(async () => {
+    await result.current[1]("change");
+  });
+  expect(result.current[0]).toBe("change");
+
+  await sleep(100); // wait update asyncStorage;
+  expect(await store.getItem(KEY)).toBe(toStorageValue("change", 10));
+
+  act(async () => { // reset state
+    await result.current[3]();
+  });
+  expect(result.current[0]).toBe(initialValue());
+  await sleep(100); // wait update asyncStorage;
+  expect(await store.getItem(KEY)).toBe(toStorageValue(initialValue(), 10));
 });
