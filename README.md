@@ -159,6 +159,15 @@ export default createPersistContext({
   options: { ... }
 });
 
+// App.js
+import User from './contexts/user';
+const App = () => {
+  return (
+    <User.Provider>
+      <Root />
+    </User.Provider>
+  );
+};
 
 // Component.js
 import User from './contexts/user';
