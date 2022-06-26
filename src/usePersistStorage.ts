@@ -44,7 +44,12 @@ const usePersistStorage = <Value>(
     migrate = defaultOptions.migrate,
     sensitive = defaultOptions.sensitive
   }: UsePersistStorageOptions<Value> = defaultOptions
-): [Value, AsyncSetState<Value>, boolean] => {
+): [
+    Value,
+    AsyncSetState<Value>,
+    boolean,
+    () => Promise<void>
+  ] => {
   const currentVersion = useRef<number>(version || 0);
   const [state, setState] = useState<Value>(initialValue);
   const [restored, setRestored] = useState<boolean>(false);
@@ -148,7 +153,15 @@ const usePersistStorage = <Value>(
     }
   };
 
-  return [state, asyncSetState, restored];
+  const resetState = async () => {
+    const newValue: Value =
+      initialValue instanceof Function
+        ? initialValue()
+        : initialValue;
+    await asyncSetState(newValue);
+  }
+
+  return [state, asyncSetState, restored, resetState];
 };
 
 export default usePersistStorage;
